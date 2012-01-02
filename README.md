@@ -1,5 +1,5 @@
 # Gulesider
-A ruby gem that screen scrapes gulesider.no, a global norwegian phone book. 
+A ruby gem that screen scrapes gulesider.no, a global norwegian phone book. This gem makes it easy to lookup norwegian phone numbers.
 
 # Installation
 
