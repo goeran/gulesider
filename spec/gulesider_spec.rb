@@ -25,5 +25,10 @@ describe Gulesider do
       result[:latitude].should_not be nil
       result[:longitude].should_not be nil
     end
+    
+    it "is possible to use a number when search" do
+      result = Gulesider.search 98260555
+      result[:name].should eql "Stian Eliassen"
+    end
   end
 end

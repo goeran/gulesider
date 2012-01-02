@@ -13,7 +13,7 @@ class ScreenScraper
   
   private
   def search_webpage_for number
-    @result = @agent.get @gulesider + number
+    @result = @agent.get "#{@gulesider}#{number}"
   end
   
   def number_belongs_to_a_person?
