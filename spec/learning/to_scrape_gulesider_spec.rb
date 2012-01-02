@@ -12,8 +12,14 @@ describe "learning to scrape gulesider.no" do
     first_hit = result.search "div.hit"
     phone = first_hit.search("li.tel:first-child").text;
     name = first_hit.search("div.header").search("a").text
+    street_name = first_hit.search("span.street-address").text
+    postal_code = first_hit.search("span.postal-code").text
+    city = first_hit.search("span.locality").text
     puts "Phone: " + phone
     puts "Name: " + name.to_s
+    puts "Adresse: " + street_name
+    puts "Postnummer: " + postal_code
+    puts "By: " + city
   end
   
   it "should be possible to scrape data for a private person?" do
