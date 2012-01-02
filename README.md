@@ -9,6 +9,8 @@ A ruby gem that does screen scraping of gulesider.no, a global norwegian phone b
 
 ```
 
+You can find the ruby gem here: https://rubygems.org/gems/gulesider
+
 # Usage
 
 ```
