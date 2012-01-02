@@ -22,7 +22,7 @@ class ScreenScraper
   
   def scraped_person_data
     vcard = @result.search "div.vcard"
-    address = vcard.search "span.adr"
+    address = vcard.search("span.adr").first
     
     return SearchResult.new({
       :person => true,

@@ -22,8 +22,8 @@ describe Gulesider do
       result[:street_name].should_not be nil
       result[:postal_code].should match /\d{4,}/
       result[:city].should_not be nil
-      result[:latitude].should_not be nil
-      result[:longitude].should_not be nil
+      result[:latitude].should match /^\d*\.\d*$/
+      result[:longitude].should match /^\d*\.\d*$/
     end
     
     it "is possible to use a number when search" do
