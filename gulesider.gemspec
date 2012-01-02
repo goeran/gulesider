@@ -2,7 +2,7 @@ Gem::Specification.new do |s|
   s.name = %q{gulesider}
   s.version = "0.1.1"
   s.date = %q{2012-01-02}
-  s.summary = %q{Screen scraper for gulesider.no. A globa Norwegian phone book}
+  s.summary = %q{Screen scraper for gulesider.no. A global Norwegian phone book}
   s.files = [
     "lib/search_result.rb",
     "lib/screen_scraper.rb",
