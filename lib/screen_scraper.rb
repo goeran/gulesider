@@ -1,3 +1,6 @@
+require 'mechanize'
+require 'search_result'
+
 class ScreenScraper
   def initialize
     @gulesider = "http://www.gulesider.no/finn:"
