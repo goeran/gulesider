@@ -41,7 +41,7 @@ class ScreenScraper
   
   def scraped_company_data
     list = @result.search "#result-list"
-    first_hit = list.search "div.hit"
+    first_hit = list.search "div.company-hit:first-child"
     
     return SearchResult.new({
       :company => true,
