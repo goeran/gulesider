@@ -2,4 +2,4 @@
 
 echo "TLF $1"
 echo "Søker på gulesider.no"
-ruby -e "require 'gulesider'; puts Gulesider.search($1)[:name]"
+ruby -e "require 'gulesider'; puts Gulesider.search('$1')[:name]"
