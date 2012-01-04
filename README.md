@@ -28,11 +28,13 @@ after the gem is installed.
 tlf 98260555
 ```
 or
+
 ```
 gulesider 98260555
 ```
 
 This wil output
+
 ```
 Søker på gulesider.no
 
