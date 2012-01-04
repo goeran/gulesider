@@ -27,13 +27,17 @@ after the gem is installed.
 ```
 tlf 98260555
 ```
-This wil output
-  asdasd
-
-The last statement sets execution permission on the bash script. You can now lookup numbers in the terminal
-
+or
 ```
-tlf 98260555
-````
+gulesider 98260555
+```
+
+This wil output
+```
+Søker på gulesider.no
+
+Stian Eliassen
+Sentrum 4, 9700 Lakselv
+```
 
 Enjoy!:)
