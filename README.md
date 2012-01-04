@@ -19,15 +19,16 @@ result = Gulesider.search 99999999
 puts result[:name]
 
 ```
-# Bash Script
+# Works in the terminal
 
-The bash script is called tlf, which can be installed using the terminal. Open the terminal and start typing
-
-```
-sudo cp tlf /usr/bin/tlf
-sudo chmod 755 /usr/bin/tlf
+The gem contains two executables: tlf and gulesider. They can both be used from within the terminal, 
+after the gem is installed.
 
 ```
+tlf 98260555
+```
+This wil output
+  asdasd
 
 The last statement sets execution permission on the bash script. You can now lookup numbers in the terminal
 
