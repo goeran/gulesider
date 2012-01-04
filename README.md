@@ -19,3 +19,20 @@ result = Gulesider.search 99999999
 puts result[:name]
 
 ```
+# Bash Script
+
+The bash script is called tlf, which can be installed using the terminal. Open the terminal and start typing
+
+```
+sudo cp tlf /usr/bin/tlf
+sudo chmod 755 /usr/bin/tlf
+
+```
+
+The last statement sets execution permission on the bash script. You can now lookup numbers in the terminal
+
+```
+tlf 98260555
+````
+
+Enjoy!:)
