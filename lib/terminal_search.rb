@@ -2,8 +2,17 @@
 require 'gulesider'
 
 puts "Søker på gulesider.no"
-result = Gulesider.search("#{ARGV[0]}")
+
+query = 46823378 #ARGV[0]
+result = Gulesider.search("#{query}")
+
 puts ""
-puts "#{result[:name]}"
-address = "#{result[:street_name]}, #{result[:postal_code]} #{result[:city]}"
-puts address if address != ",  "
+puts "\t#{result.length} resultater"
+
+result.each do |entry|
+  puts "\tNavn: " + entry[:name]
+  puts "\tNummer: " + entry[:phone]
+  address = "\t#{entry[:street_name]}, #{entry[:postal_code]} #{entry[:city]}"
+  puts address if !entry[:street_name].empty? and address != ", "
+  puts ""
+end
