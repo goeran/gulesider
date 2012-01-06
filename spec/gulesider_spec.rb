@@ -17,6 +17,7 @@ describe Gulesider do
     it "can find multiple entries for a business number" do
       result = Gulesider.search 90966858
       result.length.should > 1
+      result.first[:phone].gsub(/\s/, "").should eql "90966858"
       
       result.each do |entry|
         entry.company?.should be true
@@ -39,6 +40,7 @@ describe Gulesider do
     it "can find multiple entries for a personal number" do
       result = Gulesider.search 46823378
       result.length.should > 1
+      result.first[:phone].gsub(/\s/, "").should eql "46823378"
       
       result.each do |entry|
         entry.person?.should be true
