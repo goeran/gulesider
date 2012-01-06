@@ -25,6 +25,22 @@ describe Gulesider do
       end
     end
     
+    it "will return an array with SearchResult hash as result" do
+      business_number = 90582054
+      private_number = 98260555
+      numbers = [business_number, private_number]
+      
+      numbers.each do |n|
+        result = Gulesider.search n
+        result.class.should be Array
+        result.length.should > 0
+        
+        result.each do |item|
+          item.class.should be SearchResult
+        end
+      end
+    end
+    
     it "is possible to search up a private person" do
       result = Gulesider.search "98260555"
       result.first.person?.should be true
