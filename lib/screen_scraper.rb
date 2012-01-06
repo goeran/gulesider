@@ -24,32 +24,40 @@ class ScreenScraper
   end
   
   def scraped_person_data
+    search_result = []
     vcard = @result.search "div.vcard"
     address = vcard.search("span.adr").first
     
-    return SearchResult.new({
+    search_result.push SearchResult.new({
       :person => true,
       :name => vcard.search("span.given-name").text + " " + vcard.search("span.family-name").text,
-      :phone => vcard.search("li.tel:first-child").text,
+      :phone => vcard.search("span.tel > a").text,
       :street_name => address.search("span.street-address").text,
       :postal_code => address.search("span.postal-code").text,
       :city => address.search("span.locality").text,
       :latitude => address.search("span.latitude").text,
       :longitude => address.search("span.longitude").text
     })
+    
+    return search_result
   end
   
   def scraped_company_data
+    search_result = []
     list = @result.search "#result-list"
-    first_hit = list.search "div.company-hit:first-child"
+    hits = list.search("div.company-hit")
     
-    return SearchResult.new({
-      :company => true,
-      :name => first_hit.search("div.header").search("a").text,
-      :phone => first_hit.search("li.tel:first-child").text,
-      :street_name => first_hit.search("span.street-address").text,
-      :postal_code => first_hit.search("span.postal-code").text,
-      :city => first_hit.search("span.locality").text
-    })
+    hits.each do |hit|
+      search_result.push SearchResult.new({
+        :company => true,
+        :name => hit.search("div.header").search("a").text,
+        :phone => hit.search("li.tel:first-child").text,
+        :street_name => hit.search("span.street-address").text,
+        :postal_code => hit.search("span.postal-code").text,
+        :city => hit.search("span.locality").text
+      })
+    end
+    
+    return search_result
   end
 end
