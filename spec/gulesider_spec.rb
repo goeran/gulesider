@@ -82,5 +82,10 @@ describe Gulesider do
       result = Gulesider.search 98260555
       result.first[:name].should eql "Stian Eliassen"
     end
+    
+    it "returns 0 entries in the search result when no input" do
+      result = Gulesider.search ""
+      result.length.should == 0
+    end
   end
 end

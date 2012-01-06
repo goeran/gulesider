@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = %q{gulesider}
-  s.version = "0.2.4"
+  s.version = "0.2.5"
   s.date = %q{2012-01-02}
   s.summary = %q{Screen scraper for gulesider.no. A global Norwegian phone book}
   s.files = [
