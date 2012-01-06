@@ -25,19 +25,33 @@ class ScreenScraper
   
   def scraped_person_data
     search_result = []
-    vcard = @result.search "div.vcard"
-    address = vcard.search("span.adr").first
     
-    search_result.push SearchResult.new({
-      :person => true,
-      :name => vcard.search("span.given-name").text + " " + vcard.search("span.family-name").text,
-      :phone => vcard.search("span.tel > a").text,
-      :street_name => address.search("span.street-address").text,
-      :postal_code => address.search("span.postal-code").text,
-      :city => address.search("span.locality").text,
-      :latitude => address.search("span.latitude").text,
-      :longitude => address.search("span.longitude").text
-    })
+    vcard = @result.search "div.vcard"
+    profile_info = vcard.search "div.profile-info"
+    
+    profile_info.search("p").each do |p|
+      name = vcard.search("span.given-name").text + " " + vcard.search("span.family-name").text
+      phone = p.search("span.tel > a").text.strip
+      address = p.search("span.adr")
+      street_name = address.search("span.street-address").text
+      postal_code = address.search("span.postal-code").text
+      city = address.search("span.locality").text
+      lat = address.search("span.latitude").text
+      long = address.search("span.longitude").text
+
+      if phone != ""
+        search_result.push SearchResult.new({
+          :person => true,
+          :name => name,
+          :phone => phone,
+          :street_name => street_name,
+          :postal_code => postal_code,
+          :city => city,
+          :latitude => lat,
+          :longitude => long
+        })
+      end
+    end
     
     return search_result
   end

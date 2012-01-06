@@ -14,6 +14,16 @@ describe Gulesider do
       result.first.should have_values_for [:street_name, :city]
     end
     
+    it "can find multiple entries for a business number" do
+      result = Gulesider.search 90966858
+      result.length.should > 1
+      
+      result.each do |entry|
+        entry.company?.should be true
+        entry.should have_values_for [:name, :phone, :street_name, :postal_code, :city]
+      end
+    end
+    
     it "is possible to search up a private person" do
       result = Gulesider.search "98260555"
       result.first.person?.should be true
@@ -26,18 +36,19 @@ describe Gulesider do
       result.first.should have_values_for [:street_name, :city]
     end
     
+    it "can find multiple entries for a personal number" do
+      result = Gulesider.search 46823378
+      result.length.should > 1
+      
+      result.each do |entry|
+        entry.person?.should be true
+        entry.should have_values_for [:name, :phone]
+      end
+    end
+    
     it "is possible to use a number when search" do
       result = Gulesider.search 98260555
       result.first[:name].should eql "Stian Eliassen"
-    end
-    
-    it "can find multiple entries for a number" do
-      result = Gulesider.search 90966858
-      result.count > 1
-      
-      result.each do |entry|
-        entry.should have_values_for [:name, :phone, :street_name, :postal_code, :city]
-      end
     end
   end
 end
