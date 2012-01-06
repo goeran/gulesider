@@ -30,14 +30,14 @@ class ScreenScraper
     profile_info = vcard.search "div.profile-info"
     
     profile_info.search("p").each do |p|
-      name = vcard.search("span.given-name").text + " " + vcard.search("span.family-name").text
-      phone = p.search("span.tel > a").text.strip
+      name = wash(vcard.search("span.given-name").text) + " " + wash(vcard.search("span.family-name").text)
+      phone = wash p.search("span.tel > a").text.strip
       address = p.search("span.adr")
-      street_name = address.search("span.street-address").text
-      postal_code = address.search("span.postal-code").text
-      city = address.search("span.locality").text
-      lat = address.search("span.latitude").text
-      long = address.search("span.longitude").text
+      street_name = wash address.search("span.street-address").text
+      postal_code = wash address.search("span.postal-code").text
+      city = wash address.search("span.locality").text
+      lat = wash address.search("span.latitude").text
+      long = wash address.search("span.longitude").text
 
       if phone != ""
         search_result.push SearchResult.new({
@@ -56,6 +56,10 @@ class ScreenScraper
     return search_result
   end
   
+  def wash str
+    str.gsub(/\r|\n|\t/, "")
+  end
+  
   def scraped_company_data
     search_result = []
     list = @result.search "#result-list"
@@ -64,11 +68,11 @@ class ScreenScraper
     hits.each do |hit|
       search_result.push SearchResult.new({
         :company => true,
-        :name => hit.search("div.header").search("a").text,
-        :phone => hit.search("li.tel:first-child").text,
-        :street_name => hit.search("span.street-address").text,
-        :postal_code => hit.search("span.postal-code").text,
-        :city => hit.search("span.locality").text
+        :name => wash(hit.search("div.header").search("a").text),
+        :phone => wash(hit.search("li.tel:first-child").text),
+        :street_name => wash(hit.search("span.street-address").text),
+        :postal_code => wash(hit.search("span.postal-code").text),
+        :city => wash(hit.search("span.locality").text)
       })
     end
     

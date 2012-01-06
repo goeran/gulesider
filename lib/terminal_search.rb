@@ -3,7 +3,7 @@ require 'gulesider'
 
 puts "Søker på gulesider.no"
 
-query = 46823378 #ARGV[0]
+query = ARGV[0]
 result = Gulesider.search("#{query}")
 
 puts ""

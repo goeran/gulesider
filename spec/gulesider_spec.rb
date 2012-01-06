@@ -25,13 +25,27 @@ describe Gulesider do
       end
     end
     
-    it "will return an array with SearchResult hash as result" do
+    it "will remove special characters from data like \\r, \\n etc" do
+      business_and_private_numbers do |number|
+        result = Gulesider.search number
+        result.each do |entry|
+          entry[:phone].should_not match /\r|\n/
+        end
+      end
+    end
+    
+    def business_and_private_numbers &block
       business_number = 90582054
-      private_number = 98260555
+      private_number = 90966858
       numbers = [business_number, private_number]
-      
-      numbers.each do |n|
-        result = Gulesider.search n
+      numbers.each do |number|
+        yield number
+      end
+    end
+    
+    it "will return an array with SearchResult hash as result" do
+      business_and_private_numbers do |number|
+        result = Gulesider.search number
         result.class.should be Array
         result.length.should > 0
         
