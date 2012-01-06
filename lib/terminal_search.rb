@@ -7,7 +7,8 @@ query = ARGV[0]
 result = Gulesider.search("#{query}")
 
 puts ""
-puts "\t#{result.length} resultater"
+puts "#{result.length} resultat#{result.length > 1 ? "er" : ""}"
+puts ""
 
 result.each do |entry|
   puts "\tNavn: " + entry[:name]
